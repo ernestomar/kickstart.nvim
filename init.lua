@@ -803,9 +803,7 @@ require('lazy').setup({
     'bluz71/vim-moonfly-colors',
     name = 'moonfly',
     priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'moonfly'
-    end,
+    config = function() vim.cmd.colorscheme 'moonfly' end,
   },
 
   -- Highlight todo, notes, etc in comments
@@ -850,11 +848,30 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'java', 'javascript', 'typescript', 'tsx', 'python', 'dart', 'sql' }
+      local filetypes = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'java',
+        'javascript',
+        'typescript',
+        'tsx',
+        'python',
+        'dart',
+        'sql',
+      }
       require('nvim-treesitter').install(filetypes)
       vim.api.nvim_create_autocmd('FileType', {
         pattern = filetypes,
-        callback = function() vim.treesitter.start() end,
+        callback = function() pcall(vim.treesitter.start) end,
       })
     end,
   },
@@ -909,3 +926,5 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+if vim.g.neovide then vim.o.guifont = 'Monaspace Argon:h14' end

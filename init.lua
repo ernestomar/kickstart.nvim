@@ -930,5 +930,6 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+vim.g.neovide_font_warn = false
 
 if vim.g.neovide then vim.o.guifont = 'Monaspace Argon:h14' end
